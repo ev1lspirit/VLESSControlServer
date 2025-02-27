@@ -1,0 +1,27 @@
+services:
+  nginx-control:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx.conf:/root/data/nginx/nginx.conf"
+
+  fastapi-server:
+    build:
+      dockerfile: deployments/Dockerfile
+      context: ..
+    ports:
+      - "8050:8000"
+    env_file:
+      - .env
+    volumes:
+      - "../logs:/app/logs"
+      - "../secrets:app/secrets"
+      - "../source:app/source"
+    depends_on:
+      nginx-control:
+          condition: service_healthy
+
+
+
