@@ -6,11 +6,10 @@ from starlette.responses import JSONResponse
 
 from config import Config
 from source.api.server.schema import GetConnectionLinkBody, AddClientToConfigBody, DeleteClientFromConfigBody
-from source.utils.auth_utils import check_jwt_auth
 from source.xray.models import LoadedXrayConfigurationOutput
 from source.xray.xray_config_parser import get_configuration_parser, VlessConfigurationParser, vless_url
 
-router = APIRouter(prefix="/xray", tags=["XRay"], dependencies=[Depends(check_jwt_auth)])
+router = APIRouter(prefix="/xray", tags=["XRay"])
 logger = logging.getLogger(__name__)
 
 

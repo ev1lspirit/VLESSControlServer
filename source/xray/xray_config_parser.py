@@ -71,7 +71,7 @@ class VlessConfigurationParser:
 
 
 @asynccontextmanager
-async def get_configuration_parser() -> tp.AsyncGenerator[VlessConfigurationParser, None]:
+async def get_configuration_parser() -> tp.AsyncGenerator[VlessConfigurationParser, None, None]:
     try:
         async with aiofiles.open(Config.VLESS_CONFIGURATION_PATH_WIN) as file:
             try:

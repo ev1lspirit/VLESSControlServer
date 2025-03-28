@@ -6,11 +6,10 @@ from starlette.responses import JSONResponse
 from config import Config
 from source.api.service.schema import XRayStatusResponse
 from source.helpers import handle_exception, CommandResponse
-from source.utils.auth_utils import check_jwt_auth
 from source.utils.console_utils import check_xray_status
 from source.utils.files_utils import read_last_n_records
 
-router = APIRouter(prefix="/service", tags=["Service"], dependencies=[Depends(check_jwt_auth)])
+router = APIRouter(prefix="/service", tags=["Service"])
 logger = logging.getLogger(__name__)
 
 handle_exception = partial(handle_exception, logger=logger)
