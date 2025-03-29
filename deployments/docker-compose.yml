@@ -5,7 +5,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - "./nginx.conf:/root/data/nginx/nginx.conf"
+      - "../secrets:/app/secrets"
+      - "../reverse_proxy/nginx.conf:/app/nginx/nginx.conf"
 
   fastapi-server:
     build:
@@ -17,8 +18,8 @@ services:
       - .env
     volumes:
       - "../logs:/app/logs"
-      - "../secrets:app/secrets"
-      - "../source:app/source"
+      - "../secrets:/app/secrets"
+      - "../source:/app/source"
     depends_on:
       nginx-control:
           condition: service_healthy

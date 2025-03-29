@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN mkdir -p /app/nginx
 
 COPY source /app/source
 COPY logs /app/logs
